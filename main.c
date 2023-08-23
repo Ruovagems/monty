@@ -1,6 +1,5 @@
 #include "monty.h"
-
-
+#include <stdio.h>
 /**
  * main - Entry point
  * @argc: The argument count
@@ -13,32 +12,43 @@ int main(int argc, char *argv[])
 {
 	char *lineptr = NULL, *token = NULL;
 	size_t n = 0;
-	ssize_t nchars; 
 	FILE *file;
-	int close_file;
+	int close_file, line_number = 1;
+	instruction_t result;
 
 	if (argc != 2)
 	{
-		dprintf(stderr, "USAGE: monty file\n");
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 
 	file = fopen(argv[1], "r");
 
-	if (file = NULL)
+	if (file == NULL)
 	{
-		dprintf(stderr, "Error: Can't open file %s\n", argv[1]);
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 
 
-	while (nchars = getline(&lineptr, &n, file) =! -1)
+	while (getline(&lineptr, &n, file) != -1)
 	{
 		token = strtok(lineptr, " \n");
 		if (token == NULL)
-			exit(EXIT_SUCCESS);
+		{
+			line_number++;
+			continue;
+		}
 
 		/* call the necessary function */
+		result = execute_opcodes(token);
+
+		if (result == NULL)
+		{
+			printf("L%d: unknown instruction %s\n",line_number, token);
+			exit(EXIT_FAILURE);
+		}
+
 	}
 
 	free(lineptr);
