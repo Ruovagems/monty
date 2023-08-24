@@ -12,10 +12,10 @@ int main(int argc, char *argv[])
 	char *lineptr = NULL, *token = NULL;
 	size_t n = 0;
 	FILE *file;
-	int nchars;
-	int close_file, line_number = 1;
+	ssize_t nchars;
+	int line_number = 1;
 	instruct result;
-	stack_t **stack = NULL;
+	stack_t *stack = NULL;
 
 	if (argc != 2)
 	{
@@ -44,12 +44,10 @@ int main(int argc, char *argv[])
 			fclose(file);
 			exit(EXIT_FAILURE);
 		}
-		free_all(stack);
 	}
 	free(lineptr);
-	close_file = fclose(file);
-	if (close_file == -1)
-		exit(EXIT_FAILURE);
+	fclose(file);
+	free_all(&stack);
 	return (0);
 }
 

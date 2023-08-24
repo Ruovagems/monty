@@ -15,19 +15,16 @@ instruct execute_opcodes(char *str)
 		{"pint", _pint},
 		{NULL, NULL}
 	};
+
 	i = 0;
 
 	while (opt[i].opcode)
 	{
 		if (strcmp(opt[i].opcode, str) == 0)
 			return (opt[i].f);
-		else
-			i++;
-
+		i++;
 	}
+	instruct default_instr = NULL;
 
-	return (opt[i].f);
-	
-
-
+	return (default_instr);
 }
