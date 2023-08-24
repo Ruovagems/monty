@@ -52,9 +52,9 @@ void _push(stack_t **stack, unsigned int line_number)
  * Return: void
  */
 
-void _pall(stack_t **stack, unsigned int line_number)
+void _pall(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 {
-	(void) line_number;
+	/*(void) line_number;*/
 	stack_t *curr = *stack;
 
 	while (curr != NULL)
@@ -109,4 +109,3 @@ void _pint(stack_t **stack, unsigned int line_number)
 	printf("%d\n", (*stack)->n);
 
 }
-
