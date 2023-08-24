@@ -12,6 +12,7 @@ instruct execute_opcodes(char *str)
 	instruction_t opt[] = {
 		{"push", _push},
 		{"pall", _pall},
+		{"pint", _pint},
 		{NULL, NULL}
 	};
 	i = 0;

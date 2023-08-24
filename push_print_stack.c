@@ -92,3 +92,21 @@ int _isnumeric(char *str)
 	return (1);
 }
 
+/**
+ * _pint - prints the value at the top of the stack, followed by a new line
+ * @stack: is the pointer to the list
+ * @line_number: the line where the opcode is in the file
+ * Return: void
+ */
+
+void _pint(stack_t **stack, unsigned int line_number)
+{
+	if (*stack == NULL)
+	{
+		printf("L%d: can't pint, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	printf("%d\n", (*stack)->n);
+
+}
+
