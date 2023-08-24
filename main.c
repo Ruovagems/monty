@@ -1,4 +1,6 @@
 #include "monty.h"
+
+void free_all(stack_t **stack);
 /**
  * main - Entry point
  * @argc: The argument count
@@ -13,6 +15,7 @@ int main(int argc, char *argv[])
 	int nchars;
 	int close_file, line_number = 1;
 	instruct result;
+	stack_t **stack = NULL;
 
 	if (argc != 2)
 	{
@@ -41,10 +44,30 @@ int main(int argc, char *argv[])
 			fclose(file);
 			exit(EXIT_FAILURE);
 		}
+		free_all(stack);
 	}
 	free(lineptr);
 	close_file = fclose(file);
 	if (close_file == -1)
 		exit(EXIT_FAILURE);
 	return (0);
+}
+
+
+/**
+ * free_all - frees the list
+ * @stack: is the pointer to the list
+ * Return: void
+ */
+void free_all(stack_t **stack)
+{
+	stack_t *curr = *stack;
+	stack_t *next = NULL;
+
+	while (curr != NULL)
+	{
+		next = curr->next;
+		free(curr);
+		curr = next;
+	}
 }

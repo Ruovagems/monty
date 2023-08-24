@@ -45,5 +45,6 @@ void _pint(stack_t **stack, unsigned int line_number);
 instruct execute_opcodes(char *str);
 int _isnumeric(char *str);
 
+void free_all(stack_t **stack);
 
 #endif /* monty header file */
