@@ -30,8 +30,8 @@ int main(int argc, char *argv[])
 	}
 	while ((nchars = getline(&lineptr, &n, file)) != -1)
 	{
-		token = strtok(lineptr, " \n");
-		if (token == NULL)
+		token = strtok(lineptr, " \n\r\t");
+		if (token == NULLi || token[0] == '#')
 		{
 			line_number++;
 			continue;
