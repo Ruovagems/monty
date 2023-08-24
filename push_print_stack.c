@@ -17,7 +17,7 @@ void _push(stack_t **stack, unsigned int line_number)
 		printf("Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	token = (NULL, " \n");
+	token = strtok(NULL, " \n");
 	if (token != NULL && _isnumeric(token) == 1)
 	{
 		num_token = atoi(token);

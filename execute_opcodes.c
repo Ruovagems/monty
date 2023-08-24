@@ -6,12 +6,11 @@
  * Return: the correct function depending on input
  */
 
-instruction_t execute_opcodes(char *str)
+instruct execute_opcodes(char *str)
 {
 	int i;
 	instruction_t opt[] = {
 		{"push", _push},
-		{"pall", _pall},
 		{NULL, NULL}
 	};
 	i = 0;

@@ -1,5 +1,5 @@
 #include "monty.h"
-#include <stdio.h>
+
 /**
  * main - Entry point
  * @argc: The argument count
@@ -13,8 +13,9 @@ int main(int argc, char *argv[])
 	char *lineptr = NULL, *token = NULL;
 	size_t n = 0;
 	FILE *file;
+	int nchars;
 	int close_file, line_number = 1;
-	instruction_t result;
+	instruct result;
 
 	if (argc != 2)
 	{
@@ -30,8 +31,7 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
-
-	while (getline(&lineptr, &n, file) != -1)
+	while ((nchars = getline(&lineptr, &n, file)) != -1)
 	{
 		token = strtok(lineptr, " \n");
 		if (token == NULL)
@@ -46,6 +46,8 @@ int main(int argc, char *argv[])
 		if (result == NULL)
 		{
 			printf("L%d: unknown instruction %s\n",line_number, token);
+			free(lineptr);
+			fclose(file);
 			exit(EXIT_FAILURE);
 		}
 
