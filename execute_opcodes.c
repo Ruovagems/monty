@@ -19,6 +19,6 @@ instruct execute_opcodes(char *str)
 	while (opt[i].f != NULL && strcmp(opt[i].opcode, str) != 0)
 		i++;
 	return (opt[i].f);
-	
-	
+
+
 }
