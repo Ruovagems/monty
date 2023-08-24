@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 	int nchars;
 	int line_number = 1;
 	instruct result;
-	stack_t *stack = NULL;
+	stack_t *head = NULL;
 
 	if (argc != 2)
 	{
@@ -44,12 +44,13 @@ int main(int argc, char *argv[])
 			fclose(file);
 			exit(EXIT_FAILURE);
 		}
+		result(&head, line_number);
 
 		line_number++;
 	}
 	free(lineptr);
 	fclose(file);
-	free_all(&stack);
+	free_all(&head);
 	return (0);
 }
 

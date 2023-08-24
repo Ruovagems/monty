@@ -1,5 +1,6 @@
 #include "monty.h"
 
+int _isnumeric(char *str);
 /**
  * _push - is for pushing to the stack
  * @stack: is the pointer to the list
@@ -19,7 +20,7 @@ void _push(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	token = strtok(NULL, " \n\t\r");
-	if (token != NULL && _isnumeric(token) == 1)
+	if (token != NULL && (_isnumeric(token)) == 1)
 	{
 		num_token = atoi(token);
 	}
@@ -75,22 +76,29 @@ void _pall(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 int _isnumeric(char *str)
 {
 	unsigned int i = 0;
+	int is_numeric = 1;
 
-	if (!str)
+	if (str == NULL || str[0] == '\0')
 		return (0);
-	while (str[i])
+	if (str[0] == '-')
 	{
-		if (str[0] == '-')
-		{
-			i++;
-			continue;
-		}
-
-		if (!isdigit(str[i]))
-			return (0);
+		i = 1;
+	}
+	else
+	{
+		i = 0;
 	}
 
-	return (1);
+	for (; str[i] != '\0'; i++)
+	{
+		if (!isdigit(str[i]))
+		{
+			is_numeric = 0;
+			break;
+		}
+	}
+
+	return (is_numeric);
 }
 
 /**
