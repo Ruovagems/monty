@@ -12,6 +12,7 @@ void _push(stack_t **stack, unsigned int line_number)
 	int num_token;
 	char *token;
 	stack_t *new_node = malloc(sizeof(stack_t));
+
 	if (!new_node)
 	{
 		printf("Error: malloc failed\n");
@@ -44,11 +45,25 @@ void _push(stack_t **stack, unsigned int line_number)
 
 }
 
-/*
+/**
+ * _pall - print the values in the list
+ * @stack: is the pointer to the list
+ * @line_number: the line where the opcode is in the file
+ * Return: void
+ */
+
 void _pall(stack_t **stack, unsigned int line_number)
 {
+	(void) line_number;
+	stack_t *curr = *stack;
+
+	while (curr != NULL)
+	{
+		printf("%d\n", curr->n);
+		curr = curr->next;
+	}
 }
-*/
+
 
 /**
  * _isnumeric - checks whether a given string is numeric
