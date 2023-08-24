@@ -18,13 +18,10 @@ instruct execute_opcodes(char *str)
 
 	i = 0;
 
-	while (opt[i].opcode)
+	while (opt[i].f != NULL && strcmp(opt[i].opcode, str) != 0)
 	{
-		if (strcmp(opt[i].opcode, str) == 0)
-			return (opt[i].f);
 		i++;
 	}
-	instruct default_instr = NULL;
 
-	return (default_instr);
+	return (opt[i].f);
 }
