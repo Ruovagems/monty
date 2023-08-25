@@ -25,6 +25,7 @@ typedef struct stack_s
 } stack_t;
 
 /* global variable */
+extern FILE *file;
 
 /**
  * struct instruction_s - opcode and its function
@@ -44,9 +45,13 @@ typedef void (*instruct)(stack_t **stack, unsigned int line_number);
 void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
 void _pint(stack_t **stack, unsigned int line_number);
+void _pop(stack_t **stack, unsigned int line_number);
+void _swap(stack_t **stack, unsigned int line_number);
+void _add(stack_t **stack, unsigned int line_number);
+void _nop(stack_t **stack, unsigned int line_number);
 instruct execute_opcodes(char *str);
 int _isnumeric(char *str);
 
 void free_all(stack_t **stack);
-
+void free_lineptr(char *lineptr);
 #endif /* monty header file */

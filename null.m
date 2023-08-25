@@ -1,2 +1,2 @@
 
-mambo wangu
+push panou

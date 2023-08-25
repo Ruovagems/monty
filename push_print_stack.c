@@ -9,7 +9,6 @@ int _isnumeric(char *str);
 
 void _push(stack_t **stack, unsigned int line_number)
 {
-
 	int num_token;
 	char *token = NULL;
 	stack_t *new_node = malloc(sizeof(stack_t));
@@ -24,11 +23,11 @@ void _push(stack_t **stack, unsigned int line_number)
 	{
 		num_token = atoi(token);
 	}
-
 	else
 	{
-		printf("L%d: usage: push integer\n", line_number);
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		free(new_node);
+		fclose(file);
 		exit(EXIT_FAILURE);
 	}
 

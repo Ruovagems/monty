@@ -1,5 +1,7 @@
 #include "monty.h"
 
+FILE *file = NULL;
+void free_lineptr(char *lineptr);
 void free_all(stack_t **stack);
 /**
  * main - Entry point
@@ -11,7 +13,6 @@ int main(int argc, char *argv[])
 {
 	char *lineptr = NULL, *token = NULL;
 	size_t n = 0;
-	FILE *file;
 	int nchars;
 	int line_number = 1;
 	instruct result;
@@ -36,6 +37,7 @@ int main(int argc, char *argv[])
 			line_number++;
 			continue;
 		}
+
 		result = execute_opcodes(token);
 		if (result == NULL)
 		{
@@ -44,8 +46,8 @@ int main(int argc, char *argv[])
 			fclose(file);
 			exit(EXIT_FAILURE);
 		}
-		result(&head, line_number);
 
+		result(&head, line_number);
 		line_number++;
 	}
 	free(lineptr);
@@ -71,4 +73,14 @@ void free_all(stack_t **stack)
 		free(curr);
 		curr = next;
 	}
+}
+
+/**
+ * free_lineptr - frees the lineptr;
+ * @lineptr: is the lineptr to be freed
+ * Return: void
+ */
+void free_lineptr(char *lineptr)
+{
+	free(lineptr);
 }
