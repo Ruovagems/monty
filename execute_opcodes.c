@@ -21,6 +21,7 @@ instruct execute_opcodes(char *str)
 		{"div", _div},
 		{"mul", _mul},
 		{"mod", _mod},
+		{"pchar", _pchar},
 		{NULL, NULL}
 	};
 
