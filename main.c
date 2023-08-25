@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 		result = execute_opcodes(token);
 		if (result == NULL)
 		{
-			printf("L%d: unknown instruction %s\n", line_number, token);
+			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, token);
 			fclose(file);
 			exit(EXIT_FAILURE);
 		}

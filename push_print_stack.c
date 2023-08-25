@@ -15,7 +15,7 @@ void _push(stack_t **stack, unsigned int line_number)
 
 	if (!new_node)
 	{
-		printf("Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	token = strtok(NULL, " \n\t\r");
