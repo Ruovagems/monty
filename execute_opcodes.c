@@ -20,6 +20,7 @@ instruct execute_opcodes(char *str)
 		{"sub", _sub},
 		{"div", _div},
 		{"mul", _mul},
+		{"mod", _mod},
 		{NULL, NULL}
 	};
 
