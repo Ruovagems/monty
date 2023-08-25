@@ -1,7 +1,6 @@
 #include "monty.h"
 
 FILE *file = NULL;
-void free_lineptr(char *lineptr);
 void free_all(stack_t **stack);
 /**
  * main - Entry point
@@ -11,9 +10,8 @@ void free_all(stack_t **stack);
  */
 int main(int argc, char *argv[])
 {
-	char *lineptr = NULL, *token = NULL;
-	size_t n = 0;
-	int nchars;
+	char lineptr[SIZE];
+        char *token = NULL;
 	int line_number = 1;
 	instruct result;
 	stack_t *head = NULL;
@@ -29,7 +27,7 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	while ((nchars = getline(&lineptr, &n, file)) != -1)
+	while (fgets(lineptr, SIZE, file) != NULL)
 	{
 		token = strtok(lineptr, " \n\r\t");
 		if (token == NULL || token[0] == '#')
@@ -42,7 +40,6 @@ int main(int argc, char *argv[])
 		if (result == NULL)
 		{
 			printf("L%d: unknown instruction %s\n", line_number, token);
-			free(lineptr);
 			fclose(file);
 			exit(EXIT_FAILURE);
 		}
@@ -50,7 +47,6 @@ int main(int argc, char *argv[])
 		result(&head, line_number);
 		line_number++;
 	}
-	free(lineptr);
 	fclose(file);
 	free_all(&head);
 	return (0);
@@ -75,12 +71,3 @@ void free_all(stack_t **stack)
 	}
 }
 
-/**
- * free_lineptr - frees the lineptr;
- * @lineptr: is the lineptr to be freed
- * Return: void
- */
-void free_lineptr(char *lineptr)
-{
-	free(lineptr);
-}
