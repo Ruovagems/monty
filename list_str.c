@@ -80,3 +80,25 @@ void _rotl(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 	next->prev = NULL;
 	*stack = next;
 }
+
+/**
+ * _rotr - rotates the stack to the bottom
+ * @stack: is the pointer to the list
+ * @line_number: is where the opcode is in the file
+ * Return: void
+ */
+void _rotr(stack_t **stack, __attribute__((unused)) unsigned int line_number)
+{
+	stack_t *curr = *stack;
+
+	while (curr->next != NULL)
+	{
+		curr = curr->next;
+	}
+
+	curr->next = *stack;
+	curr->prev->next = NULL;
+	curr->prev = NULL;
+	*stack = curr;
+
+}
