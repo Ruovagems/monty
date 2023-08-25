@@ -11,7 +11,7 @@ void free_all(stack_t **stack);
 int main(int argc, char *argv[])
 {
 	char lineptr[SIZE];
-        char *token = NULL;
+	char *token = NULL;
 	int line_number = 1;
 	instruct result;
 	stack_t *head = NULL;
