@@ -23,6 +23,7 @@ instruct execute_opcodes(char *str)
 		{"mod", _mod},
 		{"pchar", _pchar},
 		{"pstr", _pstr},
+		{"rotl", _rotl},
 		{NULL, NULL}
 	};
 

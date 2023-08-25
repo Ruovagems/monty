@@ -57,3 +57,26 @@ void _pstr(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 	}
 	printf("\n");
 }
+
+/**
+ * _rotl - rotates the stack to the top
+ * @stack: is the pointer to the list
+ * @line_number: is where the opcode is in the file
+ * Return: void
+ */
+void _rotl(stack_t **stack, __attribute__((unused)) unsigned int line_number)
+{
+	stack_t *curr = *stack;
+	stack_t *next = (*stack)->next;
+
+	while (curr->next != NULL)
+	{
+		curr = curr->next;
+	}
+
+	curr->next = *stack;
+	curr->next->prev = curr;
+	curr->next->next = NULL;
+	next->prev = NULL;
+	*stack = next;
+}
