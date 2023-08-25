@@ -109,11 +109,12 @@ int _isnumeric(char *str)
 
 void _pint(stack_t **stack, unsigned int line_number)
 {
-	if (*stack == NULL)
+	stack_t *curr = *stack;
+	if (curr == NULL)
 	{
 		printf("L%d: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	printf("%d\n", (*stack)->n);
+	printf("%d\n", curr->n);
 
 }
