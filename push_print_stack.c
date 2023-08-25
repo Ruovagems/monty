@@ -110,6 +110,7 @@ int _isnumeric(char *str)
 void _pint(stack_t **stack, unsigned int line_number)
 {
 	stack_t *curr = *stack;
+
 	if (curr == NULL)
 	{
 		printf("L%d: can't pint, stack empty\n", line_number);
